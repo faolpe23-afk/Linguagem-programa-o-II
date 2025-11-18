@@ -1,0 +1,32 @@
+public Class Buracoo {
+
+private final int raio;
+public Buracoo (int raio) 
+{
+this.raio=raio; 
+}
+public boolean VerticarTamanho ( cilindro c){
+
+return c. getRaio() <=this.raio;
+}
+}
+
+public class Cilindro (
+private Cilindro ( int raio)
+{
+this.raio = raio;
+}
+public int getraio (){
+
+return this. raio:
+  }
+  }
+
+  public class Cubo{
+    private int lado;
+    private Cubo( int lado){
+      
+this. lado = lado;
+      }
+public int setLado
+    }
