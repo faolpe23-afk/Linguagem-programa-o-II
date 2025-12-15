@@ -1,0 +1,289 @@
+
+class Carro {
+    private int banco;
+    private String motor;
+    private String gps;
+    private String computadorBordo;
+    private String tipo;
+
+    public void setBanco(int banco) {
+        this.banco = banco;
+    }
+
+    public void setMotor(String motor) {
+        this.motor = motor;
+    }
+
+    public void setGPS(String gps) {
+        this.gps = gps;
+    }
+
+    public void setComputadorBordo(String computadorBordo) {
+        this.computadorBordo = computadorBordo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+   
+    public String toString() {
+        return "Carro{" +
+                "tipo='" + tipo + '\'' +
+                ", banco=" + banco +
+                ", motor='" + motor + '\'' +
+                ", gps='" + gps + '\'' +
+                ", computadorBordo='" + computadorBordo + '\'' +
+                '}';
+    }
+}
+
+
+interface Builder {
+    void reset();
+    void setMotor(String motor);
+    void setGPS(String gps);
+    void setCompBordo(String cb);
+    void setBanco(int banco);
+    Carro getResult();
+}
+
+// Builder para Carro Normal
+class BuilderCarroNormal implements Builder {
+    private Carro carro;
+
+    public BuilderCarroNormal() {
+        this.reset();
+    }
+
+    
+    public void reset() {
+        this.carro = new Carro();
+        this.carro.setTipo("Normal");
+    }
+
+    
+    public void setMotor(String motor) {
+        this.carro.setMotor(motor);
+    }
+
+    
+    public void setGPS(String gps) {
+        this.carro.setGPS(gps);
+    }
+
+    
+    public void setCompBordo(String cb) {
+        this.carro.setComputadorBordo(cb);
+    }
+
+    
+    public void setBanco(int banco) {
+        this.carro.setBanco(banco);
+    }
+
+   
+    public Carro getResult() {
+        return this.carro;
+    }
+}
+
+// Builder para Carro Esportivo
+class BuilderCarroEsportivo implements Builder {
+    private Carro carro;
+
+    public BuilderCarroEsportivo() {
+        this.reset();
+    }
+
+   
+    public void reset() {
+        this.carro = new Carro();
+        this.carro.setTipo("Esportivo");
+    }
+
+    
+    public void setMotor(String motor) {
+        this.carro.setMotor(motor);
+    }
+
+    
+    public void setGPS(String gps) {
+        this.carro.setGPS(gps);
+    }
+
+    
+    public void setCompBordo(String cb) {
+        this.carro.setComputadorBordo(cb);
+    }
+
+    
+    public void setBanco(int banco) {
+        this.carro.setBanco(banco);
+    }
+
+    
+    public Carro getResult() {
+        return this.carro;
+    }
+}
+
+
+class BuilderCarroSUV implements Builder {
+    private Carro carro;
+
+    public BuilderCarroSUV() {
+        this.reset();
+    }
+
+    
+    public void reset() {
+        this.carro = new Carro();
+        this.carro.setTipo("SUV");
+    }
+
+    
+    public void setMotor(String motor) {
+        this.carro.setMotor(motor);
+    }
+
+    
+    public void setGPS(String gps) {
+        this.carro.setGPS(gps);
+    }
+
+    
+    public void setCompBordo(String cb) {
+        this.carro.setComputadorBordo(cb);
+    }
+
+    
+    public void setBanco(int banco) {
+        this.carro.setBanco(banco);
+    }
+
+    
+    public Carro getResult() {
+        return this.carro;
+    }
+}
+
+// Builder para Carro Longo
+class BuilderCarroLongo implements Builder {
+    private Carro carro;
+
+    public BuilderCarroLongo() {
+        this.reset();
+    }
+
+    
+    public void reset() {
+        this.carro = new Carro();
+        this.carro.setTipo("Longo");
+    }
+
+    
+    public void setMotor(String motor) {
+        this.carro.setMotor(motor);
+    }
+
+    
+    public void setGPS(String gps) {
+        this.carro.setGPS(gps);
+    }
+
+    
+    public void setCompBordo(String cb) {
+        this.carro.setComputadorBordo(cb);
+    }
+
+    
+    public void setBanco(int banco) {
+        this.carro.setBanco(banco);
+    }
+
+   
+    public Carro getResult() {
+        return this.carro;
+    }
+}
+
+// Classe Director
+class Director {
+    private Builder builder;
+
+    public void setBuilder(Builder builder) {
+        this.builder = builder;
+    }
+
+    public void makeCarroNormal(Builder builder) {
+        builder.reset();
+        builder.setBanco(4);
+        builder.setMotor("1.0");
+    }
+
+    public void makeCarroEsportivo(Builder builder) {
+        builder.reset();
+        builder.setBanco(2);
+        builder.setMotor("2.0");
+    }
+
+    public void makeCarroSUV(Builder builder) {
+        builder.reset();
+        builder.setBanco(7);
+        builder.setMotor("2.5");
+    }
+
+    public void makeCarroLongo(Builder builder) {
+        builder.reset();
+        builder.setBanco(4);
+        builder.setMotor("1.8");
+        builder.setGPS("GPS x");
+        builder.setCompBordo("CB x");
+    }
+}
+
+
+public class Main {
+    public static void main(String[] args) {
+        Director director = new Director();
+
+        
+        System.out.println("=== Construindo Carro Normal ===");
+        BuilderCarroNormal builderNormal = new BuilderCarroNormal();
+        director.makeCarroNormal(builderNormal);
+        Carro carroNormal = builderNormal.getResult();
+        System.out.println(carroNormal);
+
+        // Construindo um Carro Esportivo
+        System.out.println("\n=== Construindo Carro Esportivo ===");
+        BuilderCarroEsportivo builderEsportivo = new BuilderCarroEsportivo();
+        director.makeCarroEsportivo(builderEsportivo);
+        Carro carroEsportivo = builderEsportivo.getResult();
+        System.out.println(carroEsportivo);
+
+        
+        System.out.println("\n=== Construindo Carro SUV ===");
+        BuilderCarroSUV builderSUV = new BuilderCarroSUV();
+        director.makeCarroSUV(builderSUV);
+        Carro carroSUV = builderSUV.getResult();
+        System.out.println(carroSUV);
+
+        
+        System.out.println("\n=== Construindo Carro Longo ===");
+        BuilderCarroLongo builderLongo = new BuilderCarroLongo();
+        director.makeCarroLongo(builderLongo);
+        Carro carroLongo = builderLongo.getResult();
+        System.out.println(carroLongo);
+
+        System.out.println("\n=== Construindo Carro Personalizado ===");
+        BuilderCarroNormal builderCustom = new BuilderCarroNormal();
+        builderCustom.reset();
+        builderCustom.setBanco(5);
+        builderCustom.setMotor("1.6 Turbo");
+        builderCustom.setGPS("GPS Premium");
+        builderCustom.setCompBordo("Sistema Avançado");
+        Carro carroCustom = builderCustom.getResult();
+        System.out.println(carroCustom);
+    }
+}
